@@ -109,7 +109,7 @@ export function Stat({ label, value, kind, meta, href, delta, footnote }: {
       <div className="flex items-start justify-between gap-2">
         <p className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
           {label}
-          {STAT_HELP[label] && <span onClick={(e) => e.preventDefault()}><InfoTip help={STAT_HELP[label]} label={label} /></span>}
+          {STAT_HELP[label] && <InfoTip help={STAT_HELP[label]} label={label} />}
         </p>
         <Prov kind={kind} />
       </div>

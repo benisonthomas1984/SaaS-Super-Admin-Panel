@@ -40,6 +40,8 @@ export function InfoTip({ help, label }: { help: Help; label: string }) {
         aria-expanded={open}
         aria-controls={id}
         onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
           const r = e.currentTarget.getBoundingClientRect()
           setAlignRight(r.left > window.innerWidth - 400)
           setOpen((o) => !o)
