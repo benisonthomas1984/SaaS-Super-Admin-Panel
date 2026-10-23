@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`bg-background ${plexSans.variable} ${plexMono.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <AdminProvider>
           <AdminShell>{children}</AdminShell>
         </AdminProvider>
