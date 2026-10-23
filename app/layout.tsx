@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import { AdminProvider } from '@/components/admin/admin-context'
 import { AdminShell } from '@/components/admin/shell'
+import { ProductsProvider } from '@/components/products/products-context'
 import './globals.css'
 
 const plexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-plex-sans' })
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`bg-background ${plexSans.variable} ${plexMono.variable}`}>
       <body className="antialiased" suppressHydrationWarning>
         <AdminProvider>
-          <AdminShell>{children}</AdminShell>
+          <ProductsProvider>
+            <AdminShell>{children}</AdminShell>
+          </ProductsProvider>
         </AdminProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
