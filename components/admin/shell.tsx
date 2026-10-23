@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard, FileBarChart, Building2, Activity, Wallet, Layers, Receipt, Scale, Megaphone,
-  HeartPulse, Cpu, Database, ShieldAlert, Lock, ServerCog, LifeBuoy, KeyRound, Map, Grid3x3, ListChecks, Shapes, ShieldCheck, X,
+  HeartPulse, Cpu, Database, ShieldAlert, Lock, ServerCog, LifeBuoy, KeyRound, Map, Grid3x3, ListChecks, Shapes, ShieldCheck, X, Compass, Settings,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ROLES, type RoleId } from '@/lib/rbac'
@@ -14,6 +14,7 @@ type NavItem = { href: string; label: string; id?: string; icon: React.Component
 
 const NAV: { group: string; items: NavItem[] }[] = [
   { group: 'Overview', items: [
+    { href: '/start', label: 'Start here', id: 'Guide', icon: Compass },
     { href: '/', label: 'Executive dashboard', id: 'SA01', icon: LayoutDashboard },
     { href: '/reports', label: 'Reports & saved views', id: 'SA01', icon: FileBarChart },
   ] },
@@ -39,6 +40,9 @@ const NAV: { group: string; items: NavItem[] }[] = [
     { href: '/operations', label: 'Operations', id: 'SA14', icon: ServerCog },
     { href: '/support', label: 'Support & comms', id: 'SA15', icon: LifeBuoy },
     { href: '/developer', label: 'Developer access', id: 'SA16', icon: KeyRound },
+  ] },
+  { group: 'Setup', items: [
+    { href: '/settings', label: 'Platform settings', id: 'GAP-S', icon: Settings },
   ] },
   { group: 'Specification', items: [
     { href: '/spec', label: 'IA, screens & flows', icon: Map },

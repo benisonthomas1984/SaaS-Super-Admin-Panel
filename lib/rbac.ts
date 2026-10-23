@@ -15,6 +15,7 @@ export type Capability =
   | 'act.security'
   | 'act.roles'
   | 'act.export'
+  | 'act.settings'
 
 export const ROLES: Record<RoleId, { label: string; short: string; boundary: string; caps: Capability[] }> = {
   owner: {
@@ -23,7 +24,7 @@ export const ROLES: Record<RoleId, { label: string; short: string; boundary: str
     boundary: 'No invisible audit deletion; customer-content access still governed by SA13.03.',
     caps: [
       'view.finance', 'view.margin', 'view.usage', 'view.customer', 'view.security',
-      'act.pricing', 'act.ops', 'act.killswitch', 'act.roles', 'act.export', 'act.security',
+      'act.pricing', 'act.ops', 'act.killswitch', 'act.roles', 'act.export', 'act.security', 'act.settings',
     ],
   },
   finance: {
@@ -73,6 +74,7 @@ export const CAP_LABEL: Record<Capability, string> = {
   'act.security': 'revoke credentials and manage security policy',
   'act.roles': 'grant or revoke admin roles',
   'act.export': 'export permitted rows',
+  'act.settings': 'change platform integrations, brand and defaults',
 }
 
 export function can(role: RoleId, cap: Capability) {

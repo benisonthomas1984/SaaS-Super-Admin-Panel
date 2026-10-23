@@ -1,11 +1,12 @@
 import { Send } from 'lucide-react'
+import { CreatePlanButton } from './plan-builder'
 import { ActionButton, StateFrame } from '@/components/admin/state'
 import { Assumption, Badge, Callout, DataTable, Field, KV, Panel, Prov, inputCls } from '@/components/admin/ui'
 
 export function CatalogueSection() {
   return (
     <div className="flex flex-col gap-5">
-      <Panel title="Plan catalogue" features={['SA05.01']} description="Plans are versioned. Existing customers stay on their version unless a migration is explicitly scheduled.">
+      <Panel title="Plan catalogue" features={['SA05.01']} description="Plans are versioned. Existing customers stay on their version unless a migration is explicitly scheduled." actions={<CreatePlanButton />}>
         <StateFrame features={['SA05.01']} cap="view.customer">
           <DataTable columns={[{ key: 'p', label: 'Plan' }, { key: 'v', label: 'Version' }, { key: 'st', label: 'Status' }, { key: 'price', label: 'Price', align: 'right' }, { key: 'cr', label: 'Included credits', align: 'right' }, { key: 'seat', label: 'Seats', align: 'right' }, { key: 'feat', label: 'Features · models' }, { key: 'subs', label: 'Companies', align: 'right' }]} rows={[
             { p: 'Starter', v: 'v4', st: <Badge tone="good">Published</Badge>, price: '$29 / seat', cr: '20,000', seat: '1–5', feat: 'Doc agent · small models', subs: '188' },

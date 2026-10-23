@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { ArrowUpRight, Info, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { feature } from '@/lib/spec'
+import { STAT_HELP, sectionHelp } from '@/lib/help'
+import { InfoTip, PageGuideButton } from './help'
 
 export function FeatureTag({ id, className }: { id: string; className?: string }) {
   const f = feature(id)
@@ -57,7 +59,10 @@ export function PageHeader({ title, moduleId, description, actions }: { title: s
         <h1 className="text-balance text-2xl font-semibold tracking-tight">{title}</h1>
         {description && <p className="mt-1 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">{description}</p>}
       </div>
-      {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
+      <div className="flex shrink-0 items-center gap-2">
+        <PageGuideButton />
+        {actions}
+      </div>
     </div>
   )
 }
@@ -70,12 +75,14 @@ export function Panel({ title, features, actions, children, className, descripti
   className?: string
   description?: string
 }) {
+  const help = sectionHelp(title, features)
   return (
     <section className={cn('rounded-md border bg-card', className)} aria-label={title}>
       <header className="flex items-start justify-between gap-4 border-b px-4 py-3">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <h2 className="text-sm font-semibold">{title}</h2>
+            {help && <InfoTip help={help} label={title.split(' · ')[0]} />}
             {features?.map((f) => <FeatureTag key={f} id={f} />)}
           </div>
           {description && <p className="mt-0.5 text-pretty text-xs leading-relaxed text-muted-foreground">{description}</p>}
@@ -100,7 +107,10 @@ export function Stat({ label, value, kind, meta, href, delta, footnote }: {
   const body = (
     <>
       <div className="flex items-start justify-between gap-2">
-        <p className="text-xs font-medium text-muted-foreground">{label}</p>
+        <p className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
+          {label}
+          {STAT_HELP[label] && <span onClick={(e) => e.preventDefault()}><InfoTip help={STAT_HELP[label]} label={label} /></span>}
+        </p>
         <Prov kind={kind} />
       </div>
       <p className={cn('mt-2 text-2xl font-semibold tabular tracking-tight', muted && 'text-muted-foreground', kind === 'estimated' && 'italic')}>

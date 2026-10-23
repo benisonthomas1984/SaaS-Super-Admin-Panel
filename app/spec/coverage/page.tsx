@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CONTRADICTIONS, FEATURES, GAPS, MODULES, featureHref, featuresFor, type StateKind } from '@/lib/spec'
+import { CONTRADICTIONS, FEATURES, GAPS, MODULES, PLATFORM_GAPS, featureHref, featuresFor, type StateKind } from '@/lib/spec'
 import { Badge, FeatureTag, KV, PageHeader, Panel } from '@/components/admin/ui'
 
 export const metadata = { title: 'Coverage matrix — Ledgerline Superadmin' }
@@ -78,6 +78,22 @@ export default function CoveragePage() {
                 <p className="text-sm font-semibold"><span className="font-mono text-destructive">{g.id}</span> · {g.title}</p>
                 <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{g.detail}</p>
                 {g.features.length > 0 && <div className="mt-2 flex gap-1">{g.features.map((f) => <FeatureTag key={f} id={f} />)}</div>}
+              </li>
+            ))}
+          </ul>
+        </Panel>
+
+        <Panel title="Gaps beyond the source specification" description="Found on re-review: what a non-technical owner needs to actually run the platform. Proposed IDs (GAP-S…) — not in the original 64.">
+          <ul className="flex flex-col gap-3">
+            {PLATFORM_GAPS.map((g) => (
+              <li key={g.id} id={g.id} className={g.status === 'open' ? 'rounded border border-destructive/30 p-3' : 'rounded border p-3'}>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-sm font-semibold"><span className="font-mono text-primary">{g.id}</span> · {g.title}</p>
+                  <Badge tone={g.status === 'open' ? 'bad' : 'good'}>{g.status === 'open' ? 'Open' : 'Designed'}</Badge>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{g.detail}</p>
+                {g.where.startsWith('/') && <Link href={g.where} className="mt-1 inline-block text-xs font-medium text-primary underline-offset-2 hover:underline">Open {g.where}</Link>}
+                {!g.where.startsWith('/') && g.where !== '—' && <p className="mt-1 text-xs text-muted-foreground">{g.where}</p>}
               </li>
             ))}
           </ul>
