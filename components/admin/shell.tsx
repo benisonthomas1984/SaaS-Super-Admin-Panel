@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard, FileBarChart, Building2, Activity, Wallet, Layers, Receipt, Scale, Megaphone,
-  HeartPulse, Cpu, Database, ShieldAlert, Lock, ServerCog, LifeBuoy, KeyRound, Map, Grid3x3, ListChecks, Shapes, ShieldCheck, X, Compass, Settings,
+  HeartPulse, Cpu, Database, ShieldAlert, Lock, ServerCog, LifeBuoy, KeyRound, Map, Grid3x3, ListChecks, Shapes, ShieldCheck, X, Compass, Settings, Boxes, GitMerge,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ROLES, type RoleId } from '@/lib/rbac'
@@ -17,6 +17,9 @@ const NAV: { group: string; items: NavItem[] }[] = [
     { href: '/start', label: 'Start here', id: 'Guide', icon: Compass },
     { href: '/', label: 'Executive dashboard', id: 'SA01', icon: LayoutDashboard },
     { href: '/reports', label: 'Reports & saved views', id: 'SA01', icon: FileBarChart },
+  ] },
+  { group: 'Products', items: [
+    { href: '/products', label: 'Products & packages', id: 'MP01', icon: Boxes },
   ] },
   { group: 'Customers & money', items: [
     { href: '/customers', label: 'Customers', id: 'SA02', icon: Building2 },
@@ -49,6 +52,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
     { href: '/spec/coverage', label: 'Coverage matrix', icon: Grid3x3 },
     { href: '/spec/decisions', label: 'Open decisions', icon: ListChecks },
     { href: '/spec/states', label: 'State gallery', icon: Shapes },
+    { href: '/spec/addendum', label: 'Multi-product addendum', icon: GitMerge },
   ] },
 ]
 

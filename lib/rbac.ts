@@ -16,6 +16,8 @@ export type Capability =
   | 'act.roles'
   | 'act.export'
   | 'act.settings'
+  | 'act.products'
+  | 'act.integration'
 
 export const ROLES: Record<RoleId, { label: string; short: string; boundary: string; caps: Capability[] }> = {
   owner: {
@@ -25,6 +27,7 @@ export const ROLES: Record<RoleId, { label: string; short: string; boundary: str
     caps: [
       'view.finance', 'view.margin', 'view.usage', 'view.customer', 'view.security',
       'act.pricing', 'act.ops', 'act.killswitch', 'act.roles', 'act.export', 'act.security', 'act.settings',
+      'act.products', 'act.integration',
     ],
   },
   finance: {
@@ -37,7 +40,7 @@ export const ROLES: Record<RoleId, { label: string; short: string; boundary: str
     label: 'Operations administrator',
     short: 'Operations',
     boundary: 'No unrestricted refunds, role grants or customer content.',
-    caps: ['view.usage', 'view.customer', 'act.ops', 'act.killswitch', 'act.export'],
+    caps: ['view.usage', 'view.customer', 'act.ops', 'act.killswitch', 'act.export', 'act.integration'],
   },
   support: {
     label: 'Support administrator',
@@ -75,6 +78,8 @@ export const CAP_LABEL: Record<Capability, string> = {
   'act.roles': 'grant or revoke admin roles',
   'act.export': 'export permitted rows',
   'act.settings': 'change platform integrations, brand and defaults',
+  'act.products': 'register, suspend and archive products',
+  'act.integration': 'connect product backends, issue product credentials and replay jobs',
 }
 
 export function can(role: RoleId, cap: Capability) {
